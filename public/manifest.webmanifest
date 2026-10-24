@@ -1,0 +1,14 @@
+{
+  "name": "Devine le prix — Lyon",
+  "short_name": "Devine le prix",
+  "description": "Devine le prix de vente réel de biens immobiliers à Lyon.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f3ee",
+  "theme_color": "#1f4e5f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

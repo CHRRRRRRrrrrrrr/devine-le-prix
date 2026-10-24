@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Conditions DVF : les données ne doivent pas être indexées par les moteurs de recherche -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Devine le prix</title>
+  <meta name="description" content="Devine le prix de vente réel d'appartements et de maisons à Lyon.">
+  <meta name="theme-color" content="#1f4e5f">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <button class="brand" data-go="home">🏠 Devine le prix</button>
+    <span class="city">Lyon</span>
+  </header>
+
+  <main id="app">
+    <!-- Accueil -->
+    <section id="home" class="screen">
+      <h1>Combien ça s'est vendu ?</h1>
+      <p class="lead">De vraies ventes immobilières à Lyon (données publiques DVF). Estime le prix, découvre le vrai.</p>
+      <button class="btn primary" id="btn-daily">Défi du jour</button>
+      <p class="hint" id="daily-status"></p>
+      <button class="btn" id="btn-free">Partie libre (5 biens)</button>
+      <div id="stats" class="stats"></div>
+      <details class="about">
+        <summary>À propos</summary>
+        <p>Les biens proviennent des <a href="https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/" target="_blank" rel="noopener">Demandes de valeurs foncières géolocalisées</a> (Etalab / DGFiP). Prix net vendeur, hors frais de notaire. Les emplacements sont approximatifs (≈ 100 m) et aucune adresse précise n'est affichée.</p>
+        <p>Score : 1000 points si tu tombes juste à 2 % près, 0 si tu te trompes de plus de 50 %.</p>
+      </details>
+    </section>
+
+    <!-- Manche -->
+    <section id="round" class="screen" hidden>
+      <div class="progress"><span id="round-label"></span><span id="round-score"></span></div>
+      <div class="card">
+        <div class="kind" id="p-kind"></div>
+        <div class="facts" id="p-facts"></div>
+        <div class="where" id="p-where"></div>
+      </div>
+      <div id="map" class="map" aria-label="Carte du quartier"></div>
+      <p class="hint">Touche la carte pour ouvrir Google Maps ou Street View.</p>
+
+      <form id="guess-form" class="guess">
+        <label for="guess-range">Ton estimation</label>
+        <div class="guess-value"><input id="guess-input" inputmode="numeric" autocomplete="off"> €</div>
+        <input type="range" id="guess-range" min="0" max="1000" step="1">
+        <div class="hint" id="guess-m2"></div>
+        <button class="btn primary" type="submit">Valider</button>
+      </form>
+
+      <div id="reveal" class="reveal" hidden>
+        <div class="verdict" id="r-verdict"></div>
+        <div class="real">Vendu <strong id="r-price"></strong></div>
+        <div class="hint" id="r-detail"></div>
+        <div class="points" id="r-points"></div>
+        <a class="btn" id="r-similar" target="_blank" rel="noopener">Voir des biens similaires à vendre ↗</a>
+        <button class="btn primary" id="btn-next">Suivant</button>
+      </div>
+    </section>
+
+    <!-- Fin de partie -->
+    <section id="end" class="screen" hidden>
+      <h1 id="end-title"></h1>
+      <div class="total" id="end-total"></div>
+      <div class="grid" id="end-grid"></div>
+      <ol class="recap" id="end-recap"></ol>
+      <button class="btn primary" id="btn-share">Partager mon résultat</button>
+      <p class="hint" id="share-status"></p>
+      <button class="btn" id="btn-again">Nouvelle partie libre</button>
+      <button class="btn ghost" data-go="home">Accueil</button>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --text: #1d2327;
+  --muted: #66707a;
+  --line: #e2ddd5;
+  --accent: #1f4e5f;
+  --accent-text: #ffffff;
+  --good: #2e8b57;
+  --mid: #d4a017;
+  --warn: #e07b2a;
+  --bad: #c8453a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #13181b;
+    --surface: #1d2428;
+    --text: #e9edef;
+    --muted: #9aa5ad;
+    --line: #2f383d;
+    --accent: #5fb3c9;
+    --accent-text: #0d1a1f;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100dvh;
+}
+a { color: var(--accent); }
+
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top));
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 1000;
+}
+.brand { all: unset; cursor: pointer; font-weight: 700; font-size: 17px; }
+.city { color: var(--muted); font-size: 14px; }
+
+main { max-width: 520px; margin: 0 auto; padding: 16px 16px 40px; }
+.screen { display: flex; flex-direction: column; gap: 12px; }
+.screen[hidden] { display: none; }
+h1 { font-size: 26px; line-height: 1.2; margin: 12px 0 0; }
+.lead { color: var(--muted); margin: 0 0 8px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; min-height: 1em; }
+
+.btn {
+  display: block; width: 100%; text-align: center; text-decoration: none;
+  font: inherit; font-weight: 600; padding: 14px 16px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  cursor: pointer;
+}
+.btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.btn:disabled { opacity: .5; cursor: default; }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+.stat b { display: block; font-size: 20px; }
+.stat span { color: var(--muted); font-size: 12px; }
+.about { color: var(--muted); font-size: 14px; }
+.about summary { cursor: pointer; }
+
+.progress { display: flex; justify-content: space-between; color: var(--muted); font-size: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.kind { font-size: 20px; font-weight: 700; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: 14px; }
+.where { color: var(--muted); font-size: 14px; }
+
+.map { height: 240px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); z-index: 0; }
+.map-popup a { display: block; margin: 4px 0; }
+
+.guess { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.guess label { font-weight: 600; }
+.guess-value { font-size: 28px; font-weight: 700; display: flex; align-items: baseline; gap: 6px; }
+.guess-value input {
+  font: inherit; width: 100%; min-width: 0; border: none; border-bottom: 2px solid var(--line);
+  background: transparent; color: var(--text); padding: 0;
+}
+.guess-value input:focus { outline: none; border-color: var(--accent); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+
+.reveal { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; text-align: center; }
+.reveal[hidden] { display: none; }
+.verdict { font-size: 18px; font-weight: 700; }
+.real { font-size: 18px; }
+.real strong { font-size: 30px; display: block; }
+.points { font-size: 22px; font-weight: 700; color: var(--accent); }
+
+.total { font-size: 44px; font-weight: 800; text-align: center; }
+.total small { font-size: 18px; color: var(--muted); font-weight: 600; }
+.grid { font-size: 30px; text-align: center; letter-spacing: 4px; }
+.recap { padding-left: 20px; margin: 0; font-size: 14px; }
+.recap li { margin: 6px 0; }
+.recap .muted { color: var(--muted); }
